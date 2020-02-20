@@ -4,12 +4,18 @@ const express = require( 'express' );
 const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
 const Chatkit = require( '@pusher/chatkit-server' );
+const dotenv = require( 'dotenv' );
+
+
+// Load env variables
+dotenv.config({ path: './config.env' });
+
 
 const app = express()
 
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:32782cbb-3737-4a79-b84d-d0c19509eaf6',
-  key: 'd048982f-1781-4d3a-a1c9-08424faab2bc:pJkRq1fEjkHsItcWFVHiJ5v/V4TTH5Fo4U2RJYY79f4=',
+  instanceLocator: process.env.CHATKIT_INSTANCE_LOCATOR,
+  key: process.env.CHATKIT_SECRET_KEY,
 });
 
 
